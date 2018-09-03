@@ -1,0 +1,130 @@
+%------------ Procesos de Markov ---------------------
+\newpage
+\soul{Procesos de Markov}
+\begin{minipage}{.22\textwidth}
+	{Son procesos estocásticos de menor orden}
+	\begin{center} $P(x(t_{n+1}\le x_{n+1}|x(t_n)=x_n,x(t_{n-1})=x_{n-1}...) = P(x(t_{n+1}\le x_{n+1}|x(t_n)=x_n)$\end{center}
+	\soul{El futuro solo depende del presente, no del pasado}
+	Tienen un espacio discreto \\
+	\begin{tikzpicture}[font=\sffamily]
+		% Setup the style for the states
+		\tikzset{node style/.style={state,
+					minimum width=2cm,
+					line width=1mm,
+					fill=gray!20!white}}
+
+		% Draw the states
+		\node[node style] at (0, 3.5)     (xn_1)     {$X_{n+1}$};
+		\node[node style] at (3.5, 3.5)     (x_n)     {$X_{n}$};
+		\node[node style] at (0, 0) (pointpoint) {$...$};
+		\node[node style] at (3.5, 0) (pointpoint2) {$...$};
+
+		% Connect the states with arrows
+		\draw[every loop,
+			auto=right,
+			line width=1mm,
+			>=latex,
+			draw=black,
+			fill=black]
+		(xn_1)     edge[bend right=20]            node {} (pointpoint)
+		(x_n)     edge[bend right=20]            node {} (xn_1)
+		(x_n)     edge[bend right=20, auto=left] node {} (pointpoint)
+		(x_n)     edge[bend right=20, auto=left] node {} (pointpoint2)
+		(pointpoint2) edge[bend right=20, auto=left] node {} (pointpoint);
+	\end{tikzpicture} \\
+	{\bf Cadenas de Markov Ergódicas} \\
+	Desde cualquier estado podemos llegar a otro en un número finito de saltos de estado \\
+	{\bf Cadenas de Markov en Tiempo Continuo (CTMC} \\
+	No consideramos el factor {\bf discreto}. Ya en los arcos no tenemos la probabilidad de transición, sino la tasa (número de transiciones por unidad de tiempo).
+	Podemos utilizar un parámetro equivalente:  {\bf tiempo de permanencia}. Distribución aleatoria continua (sin memoria) exponencial cuyo parámetro $\lambda$ es la  {\bf tasa de salida del nodo}.
+\end{minipage}
+\vfill\null
+\columnbreak
+%------------ Procesos de nacimiento y muerte ---------------------
+\soul{Procesos de nacimiento y muerte}
+\begin{minipage}{.22\textwidth}
+	Los estados alcanzados solo son los vecinos. \\
+	\begin{tikzpicture}[font=\sffamily]
+		% Setup the style for the states
+		\tikzset{node style/.style={state,
+					minimum width=2cm,
+					line width=1mm,
+					fill=gray!20!white}}
+
+		% Draw the states
+		\node[node style] at (0, 3.5)     (cero)     {0};
+		\node[node style] at (3.5, 3.5)     (uno)     {1};
+		\node[node style] at (3.5, 0) (pointpoint) {$...$};
+		\node[node style] at (0, 0) (n) {n};
+
+		% Connect the states with arrows
+		\draw[every loop,
+			auto=right,
+			line width=1mm,
+			>=latex,
+			draw=black,
+			fill=black]
+		(uno) edge[bend right=20, auto=left] node {$\mu_0$} (cero)
+		(cero)     edge[bend right=20]            node {$\lambda_0$} (uno)
+		(pointpoint) edge[bend right=20, auto=left] node {$\mu_1$} (uno)
+		(uno)     edge[bend right=20]            node {$\lambda_1$} (pointpoint)
+		(n) edge[bend right=20, auto=left] node {$\mu_{n-1}$} (pointpoint)
+		(pointpoint)     edge[bend right=20]            node {$\lambda_{n-1}$} (n);
+	\end{tikzpicture} \\
+	$\lambda$: tasa de nacimiento \\
+	$\mu$: tasa de muerte \\
+	{\bf Características}
+	\begin{itemize}[leftmargin=*]
+		\item CMTC homogénea: La probabilidad solo depende de la duración y no del instante inicial.
+		\item Nacimiento y muerte son independientes.
+		\item La probabilidad de llegada (nacimiento) con K usuarios es: $\lambda_{k}\Delta{t}+\theta(\Delta{t})$
+		\item La probabilidad de salida (muerte) con K usuarios es: $\mu_{k}\Delta{t}+\theta(\Delta{t})$
+	\end{itemize}
+\end{minipage}
+
+\vfill\null
+\columnbreak
+%------------ Probabilidades ---------------------
+\soul{Probabilidades}
+\begin{minipage}{.22\textwidth}
+	{\bf Probabilidad total}
+	\begin{flalign}
+		&\begin{aligned}\nonumber
+			 & P_{k}(t + \Delta{t}) =                                                                                                                            \\
+			 & \overbrace{P_{k-1}(t)[\lambda_{k-1}\Delta{t}+\theta(\Delta{t})]}^{\text{Probabilidad nacimiento estado k-1}} +                                    \\
+			 & \overbrace{P_{k+1}(t)[\mu_{k+1}\Delta{t}+\theta(\Delta{t})]}^{\text{Probabilidad muerte estado k+1}} +                                            \\
+			 & \overbrace{P_{k}(t)[(1-\lambda_{k}\Delta{t}) +  (1-\mu_{k}\Delta{t})+\theta(\Delta{t})]}^{\text{Probabilidad no nacimiento y no muerte estado k}}
+		\end{aligned}&&
+	\end{flalign}
+	{\bf Caso particular K=0}
+	\begin{flalign}
+		&\begin{aligned}\nonumber
+			 & P_{0}(t + \Delta{t}) =                                                                                          \\
+			 & \overbrace{P_{1}(t)[\mu_{1}\Delta{t}+\theta(\Delta{t})]}^{\text{Probabilidad muerte estado 1}} +                \\
+			 & \overbrace{P_{0}(t)[(1-\lambda_{0}\Delta{t}) + \theta(\Delta{t})]}^{\text{Probabilidad no nacimiento estado 0}}
+		\end{aligned}&&
+	\end{flalign}
+	{\bf Aplicando el limite}
+	\begin{flalign}
+		&\begin{aligned}\nonumber
+			 & dP_k(t) = \lambda_{k-1}P_{k-1}(t)+P_{k+1}(t)\mu_{k+1}- \\
+			 & P_k(t)(\lambda_k+\mu_k)
+		\end{aligned}&&
+	\end{flalign}
+	Son muy complicados de resolver por eso existe una solución más sencilla para los {\bf procesos de nacimiento y muerte}.
+	{\bf Eliminamos la dependencia del tiempo} \\
+	$0 = \lambda_{k-1}P_{k-1}+P_{k+1}\mu_{k+1}-P_k(\lambda_k+\mu_k)$ \\
+	$0 = P_{1}\mu_{1}-P_0(\lambda_0)$ \\
+	{\bf Probabilidades de estado}
+	\begin{flalign}
+		&\begin{aligned}\nonumber
+			 & P_k = \frac{\lambda_{0}\lambda_{1}...\lambda_{k-1}}{\mu_{1}\mu_{2}...\mu_{k}}P_0 = \prod\limits_{i=0}^{k-1} \frac{\lambda_i}{\mu{i+1}}P_0
+		\end{aligned}&&
+	\end{flalign}
+	{\bf Probabilidades de sistema vacio}
+	\begin{flalign}
+		&\begin{aligned}\nonumber
+			 & P_0 = \frac{1}{1+{\sum_{i=1}^{\infty}\prod_{j=0}^{i-1}\frac{\lambda_j}{\mu_{j+1}}}}
+		\end{aligned}&&
+	\end{flalign}
+\end{minipage}

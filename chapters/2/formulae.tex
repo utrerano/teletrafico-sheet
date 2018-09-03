@@ -1,0 +1,120 @@
+%------------ Espacio de Muestras y Eventos ---------------------
+\soul{Espacio de Muestras y Eventos}
+\begin{minipage}{0.22\textwidth}
+	\begin{tabular}{lp{3cm} l}
+		{\bf Operaciones}        & {\bf }                 \\  \hline
+		$A \cup B$               & Al menos A,B ocurre    \\
+		$A \cap B$               & A y B ocurren          \\
+		$\overline{A}$           & A no ocurre            \\
+		$\varnothing$            & El evento imposible    \\
+		$A \cap B = \varnothing$ & A y B son mut. excl.   \\
+		$A \cap \overline{B}$    & A ocurre y B no ocurre \\
+		$A \subset B$            & S ocurre A $=>$ B      \\ \hline
+	\end{tabular}
+\end{minipage}
+
+%------------ Medidas probabilísticas ---------------------
+\soul{Medidas probabilísticas}
+\begin{minipage}{0.22\textwidth}
+	{\bf Axiomas de $\sigma$-Algebra} \\
+	{\bf A1} $\varnothing$ y $\Omega$ son elementos de {\textit{F}} \\
+	{\bf A2} Si A $\in$ F, entonces $\overline{A}$ $\in$ {\textit{F}} \\
+	{\bf A3} Si $A_1$,$A_2$,$A_3$,... son elementos de F $=>$ $\bigcup\limits_{n=1}^{\infty} A_{n}$ \\
+	\\
+	{\bf Axiomas de Medidas probabilísticas} \\
+	{\bf A1} 0 $\le$ P[A] para cada evento de A. \\
+	{\bf A2} P[$\Omega$] = 1 \\
+	{\bf A3} P[A $\cup$ B] = P[A] + P[B] si los eventos de A y B son mutuamente excluyentes \\
+	{\bf A4} Si los eventos $A_1$,$A_2$,$A_3$,... son mutuamente excluyentes (eso es, $A_i \cap A_j = \varnothing$ if $i \ne j$), entonces \\
+	\begin{center} $P\left[\bigcup\limits_{n=1}^{\infty} A_{n}\right] = \sum\limits_{n=1}^{\infty} P[A_n]$ \end{center}
+	{\bf Teorema} \\
+	Sea P[·] la medida de probabilidad definida en {\textit{F}} de eventos del espacio de muestra $\Omega$. Entonces: \\
+	\\
+	{\bf (a)} P[$\varnothing$] = 0 \\
+	{\bf (b)} P[A] = 1 - P[$\overline{A}$] para cada evento A \\
+	{\bf (c)} P[A $\cup$ B] = P[A] + P[B] - P[A $\cap$ B] para cada evento A \\
+	{\bf (d)} A $\in$ B implica que P[A] $\le$ P[B] para cada evento A,B \\
+\end{minipage}
+\vfill\null
+\columnbreak
+%------------ Análisis combinatorio ---------------------
+\soul{Análisis combinatorio}
+\begin{minipage}{0.22\textwidth}
+	\begin{center}\small{
+			\begin{tabular}{  p{2.4cm} |  p{2.4cm} }
+				\multicolumn{2}{c}{\bf Permutaciones y Combinaciones}                                                                                \\ \hline
+				Permutaciones                                                  & Combinaciones                                                       \\ \hline
+				\multicolumn{2}{c}{Formas de seleccionar {\textit{k}} elmt. de {\textit{n}} elmt.}                                                   \\ \hline
+				\multicolumn{2}{c}{Las repeticiones no est\'{a}n permitidas}                                                                         \\ \hline
+				El orden es importante                                         & El orden no es importante                                           \\ \hline
+				Conj. ord. de {\textit{n}} elmt. tomando {\textit{k}} a la vez & Subconj. de {\textit{n}} elmt. tomando {\textit{k}} a la vez        \\ \hline
+				$P({\textit{n}},{\textit{k}}) = \frac{n!}{(n-k)!}$             & $C({\textit{n}},{\textit{k}}) = \binom{n}{k} = \frac{n!}{k!(n-k)!}$ \\ \hline
+			\end{tabular}
+		}\end{center}
+\end{minipage}
+
+%------------ Probabilidad Condicional ---------------------
+\soul{Probabilidad Condicional}
+\begin{minipage}{0.22\textwidth}
+	\[P[A|B] = \frac{P[A \cap B]}{P[B]}\]
+	Si los sucesos son independientes:
+	\[P[A|B] = {P[A]} \hskip 1em {P[A \cap B]}=P[A]P[B]\]
+	{\bf Regla de multiplicación}
+	\[P[A \cap B] = P[A]P[B|A]\]
+	\[P[A \cap B] = P[B]P[A|B] \hskip 1em if \hskip 1em P[A] \ne 0\]
+	{\bf Regla general de la multiplicación}
+	\begin{small}\[P[A_1 \cap A_2 \cap .... \cap A_n] = P[A_1]P[A_2|A_1]P[A_3|A_1 \cap A_1]\]
+		\[... P[A_n|A_1\cap ... \cap A_n]\]\end{small}
+	{\bf Ley de la Probabilidad Total} \\
+	{\bf (a)} $A_i \cap A_j = \varnothing $ if $i \ne j$ (mutuamente excluyentes) \\
+	{\bf (b)} $P[A_i]>0, i = 1,2,...,n$ \\
+	{\bf (c)} $A_1 \cup A_2 \cup ... \cup A_n = \Omega $ \\
+	\begin{small}\[P[A]= P[A_1]P[A|A_1] + P[A_2]P[A|A_2] + ...\]
+		\[... + P[A_n]P[A|A_n]\]\end{small}
+	{\bf Teorema de Bayes}
+	\begin{center}$P[A_i|B] = \frac{P[A_i \cap B]}{P[B]} = \frac{P[A_i]P[B|A_i]}{\sum{p(A_i)}P[B|A_i]} = \frac{P[A_i]P[B|A_i]}{P[A]}$\end{center}
+\end{minipage}
+\vfill\null
+\columnbreak
+%------------ Variables aleatorias ---------------------
+\soul{Variables aleatorias}
+\begin{minipage}{0.22\textwidth}
+	{\bf Propiedades de la función de Distribución} \\
+	{\bf (D1)} F es una función no descreciente; eso es; x $<$ y implica F(x) $\le$ F(y) \\
+	{\bf (D2)} $lim_{x \to + \infty}$ F(x) = 1 \\
+	{\bf (D3)} $lim_{x \to - \infty}$ F(x) = 0 \\
+	{\bf Función de Densidad} \\
+	{\bf (a)} $f(x) \ge 0$ para todo valor real de x \\
+	{\bf (b)} f es integrable y
+	\begin{center} $P[a \le X \le b] = \int\limits_{a}^{b} f(x)dx$ if a $<$ b \end{center}
+	{\bf (c)} $\int\limits_{-\infty}^{\infty} f(x)dx = 1$ \\
+	{\bf (d)} $F(X) = \int\limits_{-\infty}^{x} f(t)dt$ para cada valor real de x \\
+\end{minipage}
+%------------ Parametros de Variables aleatorias ---------------------
+\soul{Parámetros de Variables Aleatorias}
+\begin{minipage}{0.22\textwidth}
+	{\bf Media o valor esperado de X}
+	\begin{center} $\mu = E[x] = \sum\limits_{x_i} {x_i}{p(x_i)}$\end{center}
+	\begin{center} $\mu = E[x] = \int\limits_{-\infty}^{\infty} xf(x)dx$\end{center}
+	{\bf Varianza de X}
+	\begin{center} $\sigma^2 = Var[x] = E[({X-\mu})^2] = \sum\limits_{i} ({x_i}-{\mu})^2{p(x_i)}$\end{center}
+	\begin{center} $\sigma^2 = Var[x] = \int\limits_{-\infty}^{\infty} (x-\mu)^2f(x)dx$\end{center}
+	{\bf Coeficiente de Variación}
+	\begin{center} $C_x^2 = \frac {\sigma^2}{E[X]^2} = \frac{Var[X]}{E[X]^2}$\end{center}
+	{\bf Momentos de orden r}
+	\begin{center} $M_r(m) = \left \{  \begin{matrix} \sum\limits_{i} ({i}-{m})^r{P_i} \\
+				\int\limits_{-\infty}^{\infty} (x-m)^rf(x)dr\end{matrix}  \right .$\end{center}
+\end{minipage}
+\vfill\null
+\columnbreak
+%------------ Distribución conjunta ---------------------
+\soul{Distribución conjunta}
+\begin{minipage}{0.22\textwidth}
+	{\bf Distribución conjunta F de X e Y}
+	\begin{center} $F(x,y) = P[X \le x, Y \le y] = P[(X \le x) \cap  (Y \le y)]$\end{center}
+	\begin{center} $p(x,y) = P[X = x, Y = y]$\end{center}
+	{\bf Distribución conjunta continua F de X e Y}
+	\begin{center} $F(u,v) = \int\limits_{-\infty}^v \int\limits\limits_{-\infty}^u f(x,y)dxdy$\end{center}
+	\begin{center} $f_X(x) = \int\limits_{-\infty}^{\infty} f(x,y)dy$\end{center}
+	\begin{center} $F_Y(y) = \int\limits_{-\infty}^{\infty} f(x,y)dx$\end{center}
+\end{minipage}
