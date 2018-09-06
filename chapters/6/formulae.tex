@@ -19,9 +19,10 @@
 
 \soul{Introducción teoría de colas}
 \begin{minipage}{.22\textwidth}
-	$p_0=\frac{1}{1+{\sum_{1}^{\infty}\prod_{0}^{i-1}}\frac{\lambda_j}{\mu_{j+1}}}$ \\
-	$p_n=p_0(\prod_{0}^{i-1}\frac{\lambda_j}{\mu_{j+1}})$ \\
 	$A/B/m/K/N/Z$ Notación de Kendall \\
+	(Probabilidades mirar anterior) \\
+	a: tráfico observado por el sistema \\
+	A: tráfico real ofrecido \\
 	$T_o = \lambda \frac{1}{\mu} = T_c + T_p$ Tráfico ofrecido\\
 	$B_{LL}$: Congestión en llamdas\\
 	$B_{T}$: Congestión en tiempo\\
@@ -31,47 +32,52 @@
 	$\overline{Q}$: Número medio de usuarios en cola\\
 	$\overline{T}$: Tiempo medio de permanencia en el sistema\\
 	$\overline{W}$: Tiempo medio de espera\\
+	Media Usuarios servidores: $\overline{N}-\overline{W}$ \\
 	$\overline{T} =\overline{W}+\frac{1}{\mu}|$ Fórmula de Little: $\overline{N} =\overline{T}\overline{\lambda}$\\
 	$\overline{N} = \overline{Q} + m{\rho}$\\
 	$\overline{Q} = \overline{\lambda} \cdot \overline{W} $\\
+	$A=\frac{\lambda}{\mu}$ \\
+	$B_{LL}=\frac{T_p}{T_o}$ \\
+	$T_c=\frac{V_t}{t}$ \\
 \end{minipage}
 
 \vfill\null
 \columnbreak
 \begin{minipage}{.22\textwidth}
 	\begin{tabular}{lp{3cm} l}
-		$T_0=\frac{1}{\mu}\sum\limits_0^k{\lambda_{i}p_{i}}$         & $T_c=\frac{1}{\mu}\sum\limits_0^k{\mu_{i}p_{i}} $      \\
-		$T_p=\frac{1}{\mu}{\lambda_{k}p_{k}}$                        & $B_T=\sum_{m}^{k}p_{i} $                               \\
-		$\overline{\lambda}=\sum\limits_{0}^{k-1}{\lambda_{i}p_{i}}$ & $\overline{N}=\sum\limits_{1}^{k}{{i}p_{i}}$           \\
-		$\overline{Q}=\sum\limits_{m+1}^{k}{(i-m)p_i}$               & $\overline{T}=\frac{\overline{N}}{\overline{\lambda}}$ \\
-		$\overline{W}=\frac{\overline{Q}}{\overline{\lambda}}$       & $\rho=\frac{\overline{\lambda}{\frac{1}{\mu}}}{m}$     \\
+		$T_0=\frac{1}{\mu}\sum\limits_0^k{\lambda_{i}p_{i}}$                           & $T_c=\frac{1}{\mu}\sum\limits_1^k{\mu_{i}p_{i}} $      \\
+		$T_p=\frac{1}{\mu}{\lambda_{k}p_{k}}$                                          & $B_T=\sum_{m}^{k}p_{i} $                               \\
+		$\overline{\lambda}=\sum\limits_{0}^{k-1}{\lambda_{i}p_{i}}=\lambda(1-B_{LL})$ & $\overline{N}=\sum\limits_{1}^{k}{{i}p_{i}}$           \\
+		$\overline{Q}=\sum\limits_{m+1}^{k}{(i-m)p_i}$                                 & $\overline{T}=\frac{\overline{N}}{\overline{\lambda}}$ \\
+		$\overline{W}=\frac{\overline{Q}}{\overline{\lambda}}$                         & $\rho=\frac{\overline{\lambda}{\frac{1}{\mu}}}{m}$     \\
+		$\overline{T}=\overline{W}+E[S]$                                               & $\overline{N}=\overline{Q}+m\rho$                      \\
 	\end{tabular}
 \end{minipage}
 \soul{Modelo de Erlang (Pérdidas)}
-
 \begin{minipage}{.22\textwidth}
 	M/M/m/m
 	\begin{tabular}{lp{3cm} l}
 		$\lambda_i=\lambda{\mu_i}=i{\lambda}$ &                                                    \\
-		$p_0=\frac{1}{\sum_1^m{A^i}{i!}}$     & $p_n=\frac{\frac{A^n}{n!}}{\sum_0^m{A^i}{i!}}$     \\
+		$p_0=\frac{1}{\sum_0^m{A^i}{i!}}$     & $p_n=\frac{\frac{A^n}{n!}}{\sum_0^m{A^i}{i!}}$     \\
 		$T_0=\frac{\lambda}{\mu}=A$           & $T_c=A\cdot{p_0}\sum\limits_0^{m-1}\frac{A^i}{i!}$ \\
 	\end{tabular}
 	$T_c=A(1-p_m)$ \\
-	$T_p=A\frac{\frac{A^m}{m!}}{\sum\limits_0^m{\frac{A^i}{i!}}}$ \\ \\
+	$T_p=A\frac{\frac{A^m}{m!}}{\sum\limits_0^m{\frac{A^i}{i!}}} \hskip 2em T_p=AB_{LL}=\frac{LL_p\frac{1}{\mu}}{T}$ \\ \\
 	$B_{LL}=\frac{T_p}{T_o} = \frac{\frac{A^m}{m!}}{\sum\limits_0^m{\frac{A^i}{i!}}} = E_{1,m}(A)$ \\
 	$B_T = p_m = B_{LL}$ \\
 	$\overline{\lambda} = \lambda{(1-p_m)}$ \\
 	$\overline{N} = T_c \hskip 4em \overline{Q} = 0$             \\
 	$\overline{W} = 0  \hskip 4em \overline{T} = \frac{1}{\mu}$ \\
-	$\rho = \frac{T_c}{m}=\frac{A(1-B_{LL})}{m}$ \\ \\
-	$T_{c_i} = A[E_{1,i-1}(A)-E_{1,i}(A)]$: Selecc seq. \\
+	$\rho = \frac{T_c}{m}=\frac{A(1-B_{LL})}{m}$ \\
+	$T_{c_i} = A[E_{1,i-1}(A)-E_{1,i}(A)]$: Sel seq. \\
 	$E_{1,m} = E_{1,m+1}(A+ATC)$ \\
 	ATC: Capacidad por enlace adicional \\
 	{\underline{Casos concretos}} \\
 	$\cdot M/M/\infty/\infty$ \\
-	$\rho_0=e^{-A}p_n=\frac{A^n}{n!}e^{-A}B_{LL}=\sum\limits_{m+1}^{\infty}p_i$ \\
-	$\cdot M/M/\infty/\infty$ \\
-	$\rho_0 = \frac{1}{1+A}p_1=\frac{A}{1+A}$ \\
+	$p_0=e^{-A} \hskip 1.5em p_n=\frac{A^n}{n!}e^{-A}$ \\
+	$B_{LL}=\sum\limits_{m+1}^{\infty}p_i$ \\
+	$\cdot M/M/1/1$ \\
+	$p_0 = \frac{1}{1+A} \hskip 3em p_1=\frac{A}{1+A}$ \\
 \end{minipage}
 
 \soul{Modelo de Engset (Pérdidas)}
@@ -82,7 +88,7 @@
 	$\mu_i = \left \{  \begin{matrix} (i\mu) \hskip 3em  i=1,...,m \\
 			0 \hskip 3em \text{resto de casos}\end{matrix}  \right .$ \\
 	$p_0=\frac{1}{\sum_0^m{\binom{N}{i}{A^i}}}$ \\
-	$p_n = p_0{A^n}\binom{N}{n}$ \\
+	$p_n = {p_0}{A^n}\binom{N}{n}$ \\
 \end{minipage}
 
 \vfill\null
@@ -92,19 +98,24 @@
 	$T_0={A}\cdot{N}\cdot{p_0}\sum_0^m{\binom{N-1}{i}A^i}$ \\
 	$T_c={A}\cdot{N}\cdot{p_0}\sum_0^{m-1}{\binom{N-1}{i}A^i}=\overline{N}$ \\
 	$T_p={A}\cdot{N}\cdot{p_0}{\binom{N-1}{m}A^m}$ \\
-	$B{T}=Eng_{1,m}(N+1,A)=p_m$ \\
-	$B{LL}=Eng_{1,m}(N,A)$ \\
+	$B_{T}=Eng_{1,m}(N+1,A)=p_m$ \\
+	$B_{LL}=Eng_{1,m}(N,A)=\frac{\binom{N-1}{m}A^m}{\sum\limits_{i=0}^m{\binom{N-1}{m}A^m}}$ \\
 	$T_c=\frac{m{\overline{\lambda}}}{\mu}$ \\
 	$\overline{T}=\frac{1}{\mu}$ \\
 	$\rho=\frac{T_c}{m}=\frac{\overline{\lambda}}{\mu}$ \\
 	$A=\frac{a}{1-a(1-B_{LL})}$ \\
 	(Suponemos $B_{LL}$, calculamos A, con esa A calculamos nueva $B_{LL}$ y repetimos hasta que el resultado coverja) \\
+	{\underline{Casos concretos}} \\
+	$\cdot M/M/1/m/N$ \\
+	$p_0=\frac{1}{1+NA} \hskip 1.5em p_n=\frac{NA}{1+NA}$ \\
+	$\cdot M/M/m/m/1$ \\
+	$p_0 = \frac{1}{1+A} \hskip 3em p_1=\frac{A}{1+A}$ \\
 \end{minipage}
 
 \soul{Modelo de Bernoulli}
 \begin{minipage}{.22\textwidth}
 	Requisito: $N\le{m}$ \\
-	$p_0=\frac{1}{(1+A)^N}$ \\ \\
+	$A=\frac{a}{1-a} \hskip 3em {p_0}=\frac{1}{(1+A)^N}$ \\ \\
 	$p_n=\frac{\binom{N}{n}{A^n}}{(1+A)^N}=\binom{N}{n}\cdot{a^n}\cdot{(1-a)^{N-m}}$ \\ \\
 	$T_0=aN=T_c;T_p=0$ \\
 	$B_{LL}=0$ \\
@@ -124,19 +135,17 @@
 	M/M/m \\
 	$\lambda_i=\lambda$ \\
 	$\mu_i = \left \{  \begin{matrix} (i\mu) \hskip 3em  i=1,...,m \\
-			m\lambda \hskip 3em m<i\end{matrix}  \right .$ \\ \\
+			m\lambda \hskip 3em m<i\end{matrix}  \right .$ \\
 	$p_0 = \frac{1}{\sum_0^m{\frac{A^i}{i!}}+\frac{A^m}{m!}\cdot\frac{A}{m-A}}$ \\ \\
 	$p_n = \left \{  \begin{matrix} p_0\frac{A^n}{n!} \hskip 3em 1\le{n}\le{m} \\
-			p_0\frac{A^n}{m!m^{n-m}} \hskip 3em m<n\end{matrix}  \right .$ \\ \\
-	$T_0=A$ \\
-	$T_C=A$ \\
-	$T_p=0$ \\
-	$T_d=A\cdot{\frac{m}{m-A}{p_m}}$ \\
-	$B_d=\frac{m}{m-A}{p_m} = E_{2,m}{(A)}$ \\ \\
+			p_0\frac{A^n}{m!m^{n-m}} \hskip 3em m<n\end{matrix}  \right .$ \\
 \end{minipage}
 \vfill\null
 \columnbreak
 \begin{minipage}{.22\textwidth}
+	$T_0=A=T_c \hskip 3em T_p=0$ \\
+	$T_d=A\cdot{\frac{m}{m-A}{p_m}}$ \\
+	$B_d=\frac{m}{m-A}{p_m} = E_{2,m}{(A)}$ \\ \\
 	$E_{2,m}(A)=\frac{m{E_{1,m}(A)}}{m-A[1-{E_{1,m}(A)}]}$ \\
 	$B_T=E_{2,m}(A)$ \\
 	$B_{LL}=0$ \\
@@ -147,15 +156,13 @@
 	$\rho=\frac{A}{m}$ \\
 	$P(W > t) =E_{2,m}(A) e^{-(1-\rho)m\mu{t}}$ \\
 	{\bf \underline{Caso particular: M/M/1}} \\
-	$p_0=1-A$ \\
-	$p_n=A^n(1-A)$ \\
-	$T_d=A^2$ \\
-	$B_d=E_{2,1}(A)=A$ \\
-	$\overline{Q}=\frac{A^2}{1-A}$ \\
-	$\overline{N}=\frac{A}{1-A}$ \\
-	$\overline{W}=\frac{A}{\mu-A}$ \\
-	$\overline{T}=\frac{A}{\mu-\lambda}$ \\
+	$p_0=1-A \hskip 3em p_n=A^n(1-A)$ \\
+	$T_d=A^2 \hskip 3em B_d=E_{2,1}(A)=A$ \\
+	$\overline{Q}=\frac{A^2}{1-A} \hskip 3em \overline{N}=\frac{A}{1-A}$ \\
+	$\overline{W}=\frac{A}{\mu-A} \hskip 3em \overline{T}=\frac{A}{\mu-\lambda}$ \\
 	$\rho=A$ \\
+	{\bf \underline{Caso particular: M/M/$\infty$}} \\
+	$p_0=e^{-A} \hskip 3em p_n=\frac{A^n}{n!}{e^{-A}}$ \\
 \end{minipage}
 \soul{Modelo de Engset (Espera)}
 \begin{minipage}{.22\textwidth}
@@ -163,7 +170,7 @@
 	$\lambda_i=(N-1)\lambda \hskip 3em 0\le{i}\le{N}$ \\
 	$\mu_i = \left \{  \begin{matrix} (i\mu) \hskip 3em  i=1,...,m \\
 			m\mu \hskip 3em m<i\le{N}\end{matrix}  \right .$ \\ \\
-	$p_0=\frac{1}{\sum_0^{m-1}\binom{N}{i}A^i+\sum_m^N\frac{i!}{m!\cdot{m^{i-m}}}{\binom{N}{i}A^i}}$ \\ \\
+	$p_0=\frac{1}{\sum_0^{m-1}\binom{N}{i}A^i+\sum_{m+1}^N\frac{i!}{m!\cdot{m^{i-m}}}{\binom{N}{i}A^i}}$ \\ \\
 	$p_n = \left \{  \begin{matrix} \binom{N}{n}A^n{p_0} \hskip 3em  0 \le {n} \le {m} \\
 			\frac{n!}{m!m^{n-m}}\binom{N}{n}A^n{p_0} \hskip 3em m\le{n}\le{N}\end{matrix}  \right .$ \\ \\
 	$T_0=AN\frac{p_0}{p_0|_{N-1}}=T_C$ \\
@@ -172,7 +179,7 @@
 	$B_T=\sum\limits_m^{N}\frac{i!}{m!{m^{i-m}}}\binom{N}{i}A^i{p_0}$ \\
 	$B_{LL}=0$ \\
 	$B_d=\sum\limits_m^{N-1}\frac{i!}{m!{m^{i-m}}}\binom{N-1}{i}A^i{p_0|_{N-1}}=B_T|_{N-1}$\\ \\
-	$Eng_{2,m}(N,A)=\frac{\sum\limits_m^{N-1}\frac{i!}{m!{m^{i-m}}}\binom{N-1}{i}A^i}{\sum\limits_0^{m-1}\binom{N-1}{i}A^i +\sum\limits_m^{N-1}\frac{i!}{m!{m^{i-m}}}\binom{N-1}{i}A^i}$ \\ \\
+	$Eng_{2,m}(N,A)=\frac{\sum\limits_m^{N-1}\frac{i!}{m!{m^{i-m}}}\binom{N-1}{i}A^i}{\sum\limits_0^{m-1}\binom{N}{i}A^i +\sum\limits_m^{N-1}\frac{i!}{m!{m^{i-m}}}\binom{N-1}{i}A^i}$ \\ \\
 \end{minipage}
 \vfill\null
 \columnbreak
@@ -231,12 +238,15 @@
 	$\lambda_i=\gamma{q_{si}}+\sum\limits_{j=1}^{k}{\lambda_j{q_{ji}}} \hskip 3em 1 \le {i} \le {k}$ \\
 	$\overline{T}=\sum\limits_{1}^{k}\overline{T}\overline{T_1}$ \\
 	$e_i=\frac{\lambda_i}{\gamma}$ \\
-	$\overline{T}\cdot\overline{T_1}=e\overline{T_1}$ \\
 \end{minipage}
 \vfill\null
 \columnbreak
 \begin{minipage}{.22\textwidth}
+	$\overline{T}\cdot\overline{T_1}=e\overline{T_1}$ \\
 	$o_i=e_i\frac{1}{\mu_i}$ \\
+	$\overline{T}=\frac{1}{\gamma}\sum_{i=1}^{k}{\lambda_i}{\overline{T_i}}$ \\
+	$\overline{T_i}=\frac{1}{\mu_i(1-\rho_i)}=\frac{\overline{N_i}}{\lambda_i}$ \\
+	$p_i=\frac{\lambda}{\mu}$ \\
 	\soul{Redes cerradas}
 	{\bf Definción} \\
 	Los usuarios permanecen en el sistema, ni entran ni salen. Población constante.
@@ -265,15 +275,15 @@
 \soul{Gordon y Newell}
 \begin{minipage}{.22\textwidth}
 	$P(n_1,n_2,...,n_M)=\frac{1}{G(k,M)}\prod_1^M{P_i(n_i)}$ \\
+\end{minipage}
+\vfill\null
+\columnbreak
+\begin{minipage}{.22\textwidth}	
 	$G(k,M)=\sum_S{\prod_i^M{p_i(n_i)}}$ \\
 	$P(n_1,n_2,...,n_M)=\frac{\prod_1^M{p_i(n_i)}}{\sum{\prod_1^M{p_i(n_i)}}}$ \\
 	{\bf Caso particular (más usado)} \\
 	M/M/1 \\
 	$p_i{(n_i)}=(1-A)A^{n_i}$ \\
-\end{minipage}
-\vfill\null
-\columnbreak
-\begin{minipage}{.22\textwidth}
 	$P(n_1,n_2,...,n_M)=\frac{\prod_1^M{(1-A)A^{n_i}}}{\sum{\prod_{j=1}^M{{(1-A)A^{n_i}}}}}$ \\
 	$\frac{1}{\mu_i}=\frac{1}{\mu}$ \\
 	$\lambda_i=\sum_{j=1}^M{\lambda_j{p_{ji}}} \hskip 3em i=1,2,...,M$ \\
@@ -291,8 +301,8 @@
 \soul{Teorema de llegadas (Lavenberg)}
 \begin{minipage}{.22\textwidth}
 	"En una red cerrada con k usuarios, la probabilidad de estado percibida por un usuario llegando a un nodo es la que tendría la red si hubiera un usuario menos." \\
-	$T_1[k]=\frac{1}{\lambda_i}(\overline{N_1[k-1]} + 1) ->$ Primer paso del proceso recursivo \\
-	$N_1[k]=k\frac{\lambda_i^{'}{\overline{T_1[k]}}}{\sum_{j=1}^{M}{\lambda_j^{'}{\overline{T_j[k]}}}} ->$ Segundo paso del p.r. \\
+	$T_i[k]=\frac{1}{\lambda_i}(\overline{N_i[k-1]} + 1) ->$ Primer paso del proceso recursivo \\
+	$N_i[k]=k\frac{\lambda_i^{'}{\overline{T_i[k]}}}{\sum_{j=1}^{M}{\lambda_j^{'}{\overline{T_j[k]}}}} ->$ Segundo paso del p.r. \\
 	Lo anterior se repite hasta llegar a la población real del sistema y finalmente: \\
 	$\lambda_i[k]=\frac{\overline{N_1[k]}}{\overline{T_1[k]}} = k\frac{\lambda_j^{'}}{\sum_{j=1}^{M}{\lambda_j^{'}{\overline{T_j[k]}}}}$ \\
 \end{minipage}
@@ -310,12 +320,14 @@
 	$\text{Sist. Desbord.}\left \{  \begin{matrix} \lambda_{ij}=\lambda         \\
 			i=m\text{ y }j=0,...,m^{'}-1 \\
 			\lambda_{ij}=0 \text{  }1<m\end{matrix}  \right .$ \\ \\
-	Sistema Principal: $\mu_{ij}=i\mu$ \\
-	Sistema Desbordamiento: $\mu_{ij}=j\mu$ \\
 \end{minipage}
 
 \vfill\null
 \columnbreak
+\begin{minipage}{.22\textwidth}
+	Sistema Principal: $\mu_{ij}=i\mu$ \\
+	Sistema Desbordamiento: $\mu_{ij}=j\mu$ \\
+\end{minipage}
 
 \soul{Aproximación de Kosten}
 \begin{minipage}{.22\textwidth}
@@ -358,14 +370,18 @@
 	Con tablas (abanicos de Wilkinson) \\
 	$\alpha=A_{eq}E_{1,m_{eq}}(A_{eq})$ \\
 	$v=\alpha(1-\alpha+\frac{A_{eq}}{1+m_{eq}+\alpha-A_{eq}})$\\
+	$\alpha_t=\alpha+A$ (Sist. desb. idéntico)\\
+	$v_t=v+A$ (Sist. desb. idéntico)\\
 	Con aproximación de Rapp: \\
 	$A_{eq}=v+3z(z-1)$\\
 	$m_{eq}=\frac{A_{eq}}{1-\frac{1}{\alpha+z}}-\alpha-1$ \\
-	$z=\frac{v}{\alpha}$ \\
+	$z_t=\frac{v_t}{\alpha}$ \\
 	{\bf 3)} Obtener $A_{eq}$ y $m^{'}+m_{eq}$ \\
 	{\bf 4)} Resolver el sistema equivalente. \\
-	Importante: el único parámetro que coincide entre el sistema real y la aproximación es el tráfico perdido, no usar la aproximación para calcular cualquier otra cosa. \\
-	$G_0{S_i}=\frac{T_{p_i}}{T_{o_i}}\frac{\alpha^{'}}{\alpha}=(en M/M/m/m)\frac{\alpha_i}{A_i}\frac{\alpha^{'}}{\alpha}$
+	Importante: el único parámetro que coincide entre el sistema real y la aproximación es el tráfico perdido, no usar la aproximación para calcular cualquier otra cosa. $T_p=\alpha{B_{LL}}$ \\
+	$Go{S_i}=\frac{T_{p_i}}{T_{o_i}}\frac{\alpha^{'}}{\alpha}=(en M/M/m/m)\frac{\alpha_i}{A_i}$
+	$GoS_{final}=\prod{G_0{S_i}}$ \\
+	$GoS (Sist. desb.) = \frac{T_p}{\alpha_{total}} = \frac{AB_{LL}}{\alpha_{total}}$\\
 \end{minipage}
 
 \soul{Sistemas M/G/1}
@@ -400,7 +416,7 @@
 	P clases en la población. \\
 	$\lambda_i$: tasa de llegadas de la clase i-ésima \\
 	$E[S_i]$: tiempo medio de servicio de la clase i-ésima \\
-	$\rho_i=\lambda_i{E[S_i]}$ \\
+	$\rho_i=\lambda_i{E[S_i]} \hskip 2em E[S^2]=V[S]+E^2[S]$ \\
 	$\lambda=\sum\limits_{i=1}^P{\lambda_i}$ \\
 	$E[S]=\sum_{i=1}^P{\frac{\lambda_i}{\lambda}}E[S_i]$ (También vale para momento orden 2) \\
 	$\rho=\sum\limits_{i=1}^P{\rho_i}=\lambda{E[S]}$ \\
@@ -466,5 +482,45 @@
 	{\bf Z: tamaño de la población}
 	\begin{itemize}[leftmargin=1em]
 		\item Si es infinita se omite
+	\end{itemize}
+\end{minipage}
+\vfill\null
+\columnbreak
+\soul{Modelo de Erlang}
+\begin{minipage}{.22\textwidth}
+	\begin{itemize}[leftmargin=*]
+		\item Población infinita
+		\item Tasa de llegada $\lambda$
+		\item Tiempo de servicio $->$ distribución exponencial de media $\frac{1}{\mu}$
+		\item Los usuarios que completan su llamada vuelven al sistema
+		\item Hay m servidores
+		\item Capacidad del sistema m
+		\item No hay cola de espera
+		\item Las llamadas no completadas no se intentan
+	\end{itemize}
+\end{minipage}
+
+
+\soul{Modelo de Engset}
+\begin{minipage}{.22\textwidth}
+	\begin{itemize}[leftmargin=*]
+		\item El número de fuentes es finito N
+		\item Tasa de llegada $\lambda$ Comportamiento independiente del resto y estado del sistema.
+		\item Tiempo de servicio $->$ distribución exponencial de media $\frac{1}{\mu}$
+		\item Los usuarios que completan su llamada vuelven al sistema
+		\item m servidores en el sistema
+		\item No existen posiciones de espera (si no es atendida se abandona)
+		\item No existen reintento de llamdas
+	\end{itemize}
+\end{minipage}
+
+\soul{Modelo de Bernoulli}
+\begin{minipage}{.22\textwidth}
+	\begin{itemize}[leftmargin=*]
+		\item El número de fuentes es finito N
+		\item Tasa de llamadas cte. ($\lambda$). Comportamiento independiente del resto y estado del sistema.
+		\item Tiempo de servicio $->$ distribución exponencial de media $\frac{1}{\mu}$
+		\item Los usuarios que completan su llamada vuelven al sistema
+		\item Hay m servidores, superior al nº de fuentes $->$ No existe el rechazo de llamadas
 	\end{itemize}
 \end{minipage}

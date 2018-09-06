@@ -118,13 +118,14 @@
 	{\bf Probabilidades de estado}
 	\begin{flalign}
 		&\begin{aligned}\nonumber
-			 & P_k = \frac{\lambda_{0}\lambda_{1}...\lambda_{k-1}}{\mu_{1}\mu_{2}...\mu_{k}}P_0 = \prod\limits_{i=0}^{k-1} \frac{\lambda_i}{\mu{i+1}}P_0
+			 & P_k = \frac{\lambda_{0}\lambda_{1}...\lambda_{k-1}}{\mu_{1}\mu_{2}...\mu_{k}}P_0 = \prod\limits_{i=0}^{k-1} \frac{\lambda_i}{\mu_{(i+1)}}P_0
 		\end{aligned}&&
 	\end{flalign}
 	{\bf Probabilidades de sistema vacio}
 	\begin{flalign}
 		&\begin{aligned}\nonumber
-			 & P_0 = \frac{1}{1+{\sum_{i=1}^{\infty}\prod_{j=0}^{i-1}\frac{\lambda_j}{\mu_{j+1}}}}
+			 & P_0 = \frac{1}{1+{\sum_{i=1}^{m}\prod_{j=0}^{i-1}\frac{\lambda_j}{\mu_{(j+1)}}}}
 		\end{aligned}&&
 	\end{flalign}
+	Siendo m el número de servidores
 \end{minipage}
